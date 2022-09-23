@@ -4,8 +4,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace Car.Rental.Domain.Entities
-{    
-    //[Table("Client")]
+{   
+    
     public class Client : User
     {
         public string Cpf { get; set; }
