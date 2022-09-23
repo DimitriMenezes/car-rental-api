@@ -19,6 +19,7 @@ using Swashbuckle.AspNetCore.SwaggerUI;
 using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Car.Rental.Domain.Context;
+using Car.Rental.API.IoC;
 
 namespace Car.Rental.API
 {
@@ -42,8 +43,10 @@ namespace Car.Rental.API
                 .UseLoggerFactory(LoggerFactory.Create(builder => builder.AddConsole())));
             services.AddScoped<DbContext, ApplicationContext>();
 
-            services.AddLocalization(options => options.ResourcesPath = "Resources");
-                        
+            //services.AddLocalization(options => options.ResourcesPath = "Resources");
+
+            ApplicationInjector.RegisterServices(services);
+
 
             services.AddSwaggerGen(c =>
             {

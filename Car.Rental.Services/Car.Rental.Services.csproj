@@ -16,8 +16,4 @@
     <ProjectReference Include="..\Car.Rental.Data\Car.Rental.Data.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Settings\" />
-  </ItemGroup>
-
 </Project>

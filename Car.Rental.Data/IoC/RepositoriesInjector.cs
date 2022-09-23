@@ -11,7 +11,7 @@ namespace Car.Rental.Data.IoC
     {
         public static void RegisterServices(IServiceCollection services)
         {
-            
+            services.AddScoped<IClientRepository, ClientRepository>();
         }
     }
 }

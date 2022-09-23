@@ -29,9 +29,5 @@
     <ProjectReference Include="..\Car.Rental.Services\Car.Rental.Services.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="IoC\" />
-  </ItemGroup>
-
 
 </Project>
