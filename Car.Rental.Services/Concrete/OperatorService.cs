@@ -27,7 +27,7 @@ namespace Car.Rental.Services.Concrete
             if (!clientValidator.IsValid)
                 return new ReturnModel { Errors = clientValidator.Errors };
 
-            var existingEntity = _operatorRepository.GetByEnrollmentCode(model.EnrollmentCode);
+            var existingEntity = await _operatorRepository.GetByEnrollmentCode(model.EnrollmentCode);
             if (existingEntity != null)
                 return new ReturnModel { Errors = "EnrollmentCode already registred" };
 
