@@ -15,9 +15,11 @@ namespace Car.Rental.Services.Mapper
             CreateMap<AddressModel, Address>()
                 .ReverseMap();
             CreateMap<ClientModel, Client>()
-                .ReverseMap();
+                .ReverseMap()
+                .ForMember(i => i.Password, j => j.Ignore());
             CreateMap<OperatorModel, Operator>()
-                .ReverseMap();
+                .ReverseMap()
+                .ForMember(i => i.Password, j=> j.Ignore());
         }
     }
 }

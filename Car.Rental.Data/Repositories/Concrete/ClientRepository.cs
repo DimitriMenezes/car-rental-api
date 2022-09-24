@@ -18,7 +18,7 @@ namespace Car.Rental.Data.Repositories.Concrete
 
         public async Task<Client> GetByCpf(string cpf)
         {
-            return await _dbSet.FirstOrDefaultAsync(i => i.Cpf == cpf);
+            return await _dbSet.Include("Address").FirstOrDefaultAsync(i => i.Cpf == cpf);
         }
     }
 }

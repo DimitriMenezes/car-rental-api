@@ -1,4 +1,5 @@
-﻿using Car.Rental.Data.Repositories.Abstract;
+﻿using AutoMapper;
+using Car.Rental.Data.Repositories.Abstract;
 using Car.Rental.Services.Abstract;
 using Car.Rental.Services.Model;
 using System.Threading.Tasks;
@@ -9,11 +10,13 @@ namespace Car.Rental.Services.Concrete
     {
         private readonly IClientRepository _clientRepository;
         private readonly IOperatorRepository _operatorRepository;
+        private readonly IMapper _mapper;
 
-        public AuthenticationService(IClientRepository clientRepository, IOperatorRepository operatorRepository)
+        public AuthenticationService(IClientRepository clientRepository, IOperatorRepository operatorRepository, IMapper mapper)
         {
             _clientRepository = clientRepository;
             _operatorRepository = operatorRepository;
+            _mapper = mapper;
         }
 
 
@@ -30,7 +33,12 @@ namespace Car.Rental.Services.Concrete
 
             var token = TokenService.GenerateToken(client);
 
-            return new ReturnModel { Data = token };
+            return new ReturnModel { Data = new 
+            {
+                Token = token,
+                Client = _mapper.Map<ClientModel>(client)
+            }
+            };
         }
 
         public async Task<ReturnModel> OperatorLogin(OperatorLoginModel model)
@@ -46,7 +54,14 @@ namespace Car.Rental.Services.Concrete
 
             var token = TokenService.GenerateToken(user);
 
-            return new ReturnModel { Data = token };
+            return new ReturnModel
+            {
+                Data = new
+                {
+                    Token = token,
+                    Operator = _mapper.Map<OperatorModel>(user)
+                }
+            };
         }
     }
 }

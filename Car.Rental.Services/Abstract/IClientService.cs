@@ -8,6 +8,9 @@ namespace Car.Rental.Services.Abstract
 {
     public interface IClientService
     {       
-        Task<ReturnModel> AddClient(ClientModel model);        
+        Task<ReturnModel> AddClient(ClientModel model);
+        Task<ReturnModel> GetClientById(int id);
+        Task<ReturnModel> UpdateClient(ClientModel model);
+        Task<ReturnModel> DeleteClient(int id);
     }
 }

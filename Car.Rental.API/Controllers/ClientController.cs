@@ -28,6 +28,37 @@ namespace Car.Rental.API.Controllers
                 return BadRequest(result.Errors);
 
             return Ok(result.Data);
-        }        
+        }
+
+        [HttpGet("{id}")]
+        [Authorize(Roles ="Client")]
+        public async Task<ActionResult> GetClient(int id)
+        {
+            var result = await _clientService.GetClientById(id);           
+            return Ok(result.Data);
+        }
+
+        [HttpPut]
+        [Authorize(Roles = "Client")]
+        public async Task<ActionResult> UpdateClient(ClientModel request)
+        {
+            var result = await _clientService.UpdateClient(request);
+            if (result.Errors != null)
+                return BadRequest(result.Errors);
+
+            return Ok(result.Data);
+        }
+
+        [HttpDelete("{id}")]
+        [Authorize(Roles = "Client")]
+        public async Task<ActionResult> DeleteClient(int id)
+        {
+            var result = await _clientService.DeleteClient(id);
+            if (result.Errors != null)
+                return BadRequest(result.Errors);
+
+            return Ok(result.Data);
+        }
+
     }
 }
