@@ -32,10 +32,10 @@ namespace Car.Rental.Services.Concrete
                 return new ReturnModel { Errors = "CPF already registred" };
 
             model.Password = PasswordService.GeneratePassword(model.Password);
-            var entity = _mapper.Map<Client>(model);            
-            await _clientRepository.Insert(entity);
+            var newEntity = _mapper.Map<Client>(model);            
+            await _clientRepository.Insert(newEntity);
 
-            return new ReturnModel { Data = _mapper.Map<ClientModel>(entity) };
+            return new ReturnModel { Data = _mapper.Map<ClientModel>(newEntity) };
         }
 
         public async Task<ReturnModel> DeleteClient(int id)

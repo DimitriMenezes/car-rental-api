@@ -32,10 +32,10 @@ namespace Car.Rental.Services.Concrete
                 return new ReturnModel { Errors = "EnrollmentCode already registred" };
 
             model.Password = PasswordService.GeneratePassword(model.Password);
-            var entity = _mapper.Map<Operator>(model);
-            await _operatorRepository.Insert(entity);
+            var newEntity = _mapper.Map<Operator>(model);
+            await _operatorRepository.Insert(newEntity);
 
-            return new ReturnModel { Data = model };
+            return new ReturnModel { Data = _mapper.Map<OperatorModel>(newEntity) };
         }
 
         public async Task<ReturnModel> DeleteOperator(int id)
