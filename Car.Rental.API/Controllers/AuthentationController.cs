@@ -21,13 +21,23 @@ namespace Car.Rental.API.Controllers
         }
      
         [HttpPost]
-        [Route("login")]
-        public async Task<IActionResult> AdminLogin(ClientLoginModel model)
+        [Route("Client/Login")]
+        public async Task<IActionResult> ClientLogin(ClientLoginModel model)
         {
             var result = await _authenticationService.ClientLogin(model);
             if (result.Errors != null)
                 return BadRequest(result.Errors);
             return Ok(result.Data);
-        }            
+        }
+
+        [HttpPost]
+        [Route("Operator/Login")]
+        public async Task<IActionResult> OperatorLogin(OperatorLoginModel model)
+        {
+            var result = await _authenticationService.OperatorLogin(model);
+            if (result.Errors != null)
+                return BadRequest(result.Errors);
+            return Ok(result.Data);
+        }
     }
 }
