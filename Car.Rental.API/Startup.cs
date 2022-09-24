@@ -39,9 +39,9 @@ namespace Car.Rental.API
             services.AddMvc().AddFluentValidation();
             services.AddCors();
 
-            services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))
+            services.AddDbContext<AuthContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"), x => x.MigrationsHistoryTable("__EFMigrationsHistory", "auth"))
                 .UseLoggerFactory(LoggerFactory.Create(builder => builder.AddConsole())));
-            services.AddScoped<DbContext, ApplicationContext>();
+            services.AddScoped<DbContext, AuthContext>();
 
             //services.AddLocalization(options => options.ResourcesPath = "Resources");
 

@@ -12,10 +12,10 @@ namespace Car.Rental.Data.Repositories.Concrete
 {
     public abstract class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : Base
     {
-        internal readonly ApplicationContext _context;
+        internal readonly DbContext _context;
         internal DbSet<TEntity> _dbSet;
 
-        protected BaseRepository(ApplicationContext context)
+        protected BaseRepository(DbContext context)
         {
             _context = context;
             _dbSet = _context.Set<TEntity>();

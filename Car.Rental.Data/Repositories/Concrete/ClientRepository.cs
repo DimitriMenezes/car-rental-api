@@ -11,7 +11,7 @@ namespace Car.Rental.Data.Repositories.Concrete
 {
     public class ClientRepository : BaseRepository<Client>, IClientRepository
     {
-        public ClientRepository(ApplicationContext context) : base(context)
+        public ClientRepository(AuthContext context) : base(context)
         {
             
         }

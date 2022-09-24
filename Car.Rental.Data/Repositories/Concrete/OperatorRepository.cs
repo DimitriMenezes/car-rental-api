@@ -11,7 +11,7 @@ namespace Car.Rental.Data.Repositories.Concrete
 {
     public class OperatorRepository : BaseRepository<Operator>, IOperatorRepository
     {
-        public OperatorRepository(ApplicationContext context) : base(context)
+        public OperatorRepository(AuthContext context) : base(context)
         {
         }
 

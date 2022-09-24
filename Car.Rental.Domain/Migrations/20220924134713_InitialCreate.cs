@@ -7,8 +7,12 @@ namespace Car.Rental.Domain.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.EnsureSchema(
+                name: "auth");
+
             migrationBuilder.CreateTable(
                 name: "Address",
+                schema: "auth",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -27,6 +31,7 @@ namespace Car.Rental.Domain.Migrations
 
             migrationBuilder.CreateTable(
                 name: "User",
+                schema: "auth",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -45,6 +50,7 @@ namespace Car.Rental.Domain.Migrations
                     table.ForeignKey(
                         name: "FK_User_Address_AddressId",
                         column: x => x.AddressId,
+                        principalSchema: "auth",
                         principalTable: "Address",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -52,6 +58,7 @@ namespace Car.Rental.Domain.Migrations
 
             migrationBuilder.CreateIndex(
                 name: "IX_User_AddressId",
+                schema: "auth",
                 table: "User",
                 column: "AddressId");
         }
@@ -59,10 +66,12 @@ namespace Car.Rental.Domain.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "User");
+                name: "User",
+                schema: "auth");
 
             migrationBuilder.DropTable(
-                name: "Address");
+                name: "Address",
+                schema: "auth");
         }
     }
 }

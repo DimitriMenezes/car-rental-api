@@ -4,15 +4,15 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Car.Rental.Domain.Context
 {
-    public partial class ApplicationContext : DbContext
+    public partial class AuthContext : DbContext
     {
         public DbSet<User> User { get; set; }
         public DbSet<Address> Address { get; set; }
 
-        public ApplicationContext()
+        public AuthContext()
         {
         }
-        public ApplicationContext(DbContextOptions options) : base(options)
+        public AuthContext(DbContextOptions options) : base(options)
         {
         }
 
@@ -21,6 +21,7 @@ namespace Car.Rental.Domain.Context
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.HasDefaultSchema("auth");
             modelBuilder.ApplyConfiguration(new AddressMapping());
             modelBuilder.ApplyConfiguration(new UserMapping());
         }
